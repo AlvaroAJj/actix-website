@@ -1,0 +1,55 @@
+use std::io;
+
+fn main() {
+    let mut input = String::new();
+    let mut num1: f64;
+    let mut num2: f64;
+
+    // Loop para garantir a entrada correta de dois números
+    loop {
+        println!("Digite o primeiro número:");
+
+        io::stdin().read_line(&mut input).expect("Erro ao ler a linha");
+        num1 = match input.trim().parse() {
+            Ok(n) => n,
+            Err(_) => {
+                println!("Por favor, digite um número válido.");
+                input.clear();
+                continue;
+            }
+        };
+
+        input.clear();
+
+        println!("Digite o segundo número:");
+
+        io::stdin().read_line(&mut input).expect("Erro ao ler a linha");
+        num2 = match input.trim().parse() {
+            Ok(n) => n,
+            Err(_) => {
+                println!("Por favor, digite um número válido.");
+                input.clear();
+                continue;
+            }
+        };
+        break;
+    }
+
+    input.clear();
+
+    println!("Digite '1' para somar ou '2' para multiplicar os números:");
+
+    io::stdin().read_line(&mut input).expect("Erro ao ler a linha");
+    let escolha = input.trim();
+
+    let resultado = match escolha {
+        "1" => num1 + num2,
+        "2" => num1 * num2,
+        _ => {
+            println!("Escolha inválida. Por favor, escolha '1' ou '2'.");
+            return;
+        }
+    };
+
+    println!("O resultado é: {}", resultado);
+}
