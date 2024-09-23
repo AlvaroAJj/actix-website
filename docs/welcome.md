@@ -1,16 +1,47 @@
----
-title: Welcome
-description: Guiding you through building web apps with Actix
-slug: /
----
+class Animal {
+    constructor(nome, idade, especie) {
+        this.nome = nome;
+        this.idade = idade;
+        this.especie = especie;
+    }
 
-# Welcome to Actix
+    printInfo() {
+        console.log(`Nome: ${this.nome}, Idade: ${this.idade}, Espécie: ${this.especie}`);
+    }
+}
 
-Actix Web lets you quickly and confidently develop web services in Rust and this guide will get you going in no time.
+class Cachorro extends Animal {
+    #raca;
 
-The documentation on this website focuses primarily on the Actix Web framework. For information about the actor framework called Actix, check out the [Actix chapter][actix-chapter] (or the lower level [actix API docs][actix-docs]). Otherwise, head on to the [getting started guide][getting-started]. If you already know your way around and you need specific information you might want to read the [Actix Web API docs][actix-web-docs].
+    constructor(nome, idade, especie, raca) {
+        super(nome, idade, especie);
+        this.#raca = raca;
+    }
 
-[getting-started]: https://actix.rs/docs/getting-started
-[actix-web-docs]: https://docs.rs/actix-web
-[actix-docs]: https://docs.rs/actix
-[actix-chapter]: https://actix.rs/docs/actix
+    printInfo() {
+        super.printInfo();
+        console.log(`Raça: ${this.#raca}`);
+    }
+}
+
+class Gato extends Animal {
+    constructor(nome, idade, especie, cores) {
+        super(nome, idade, especie);
+        this.cores = cores;
+    }
+
+    printInfo() {
+        super.printInfo();
+        console.log(`Cores: ${this.cores.join(", ")}`);
+    }
+}
+
+// Criando os objetos
+let animal = new Animal("Simba", 3, "Leão");
+let cachorro = new Cachorro("Rex", 5, "Cachorro", "Labrador");
+let gato = new Gato("Jorge", 2, "Gato", ["branco", "preto"]);
+
+// Imprimindo as informações
+animal.printInfo();
+cachorro.printInfo();
+gato.printInfo();
